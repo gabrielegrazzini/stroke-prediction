@@ -3,18 +3,13 @@ from sklearn.model_selection import train_test_split #per splittare i dati in tr
 from sklearn.ensemble import RandomForestClassifier #il modello
 from sklearn.metrics import roc_auc_score #per calcolare la precisione del modello
 from sklearn.preprocessing import OrdinalEncoder
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.impute import SimpleImputer
-import streamlit as st
-
-
-def score_dataset(X_train, X_valid, y_train, y_valid):
+from sklearn.preprocessing import OneHotEncoder from sklearn.impute import SimpleImputer import streamlit as st def score_dataset(X_train, X_valid, y_train, y_valid):
     model = RandomForestClassifier(n_estimators = 100, random_state  = 0)
     model.fit(X_train, y_train)
     prediction = model.predict_proba(X_valid)[:,1]
     return roc_auc_score(y_valid, prediction), model
 
-file_path = '/home/gabry/Desktop/progetto-ml/DataSet/healthcare-dataset-stroke-data.csv'
+file_path = 'DataSet/healthcare-dataset-stroke-data.csv'
 
 X = pd.read_csv(file_path)
 y = X.stroke
